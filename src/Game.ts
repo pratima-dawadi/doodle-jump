@@ -92,7 +92,7 @@ export default class Game {
         this.keydown = true;
         this.player.dx = 3;
         this.player.image.src = "player-right.png";
-      } else if (e.key === "Enter") {
+      } else if (e.key === "Enter" || e.key === "r") {
         if (
           this.gameState === GameState.Start ||
           this.gameState === GameState.GameOver
@@ -150,7 +150,7 @@ export default class Game {
       this.canvas.height / 2 - 30
     );
     this.ctx.fillText(
-      "Press Enter to Restart",
+      "Press Enter or 'R' to Restart",
       this.canvas.width / 2,
       this.canvas.height / 2 + 30
     );
@@ -183,7 +183,7 @@ export default class Game {
     this.ctx.font = "20px Arial";
     this.ctx.fillStyle = "#DC5F00";
     this.ctx.fillText(`Score: ${this.score}`, 50, 20);
-    this.ctx.fillText(`High Score: ${this.highScore}`, 65, 50);
+    this.ctx.fillText(`High Score: ${this.highScore}`, 70, 50);
 
     if (this.player.y < this.canvas.height / 2 && this.player.dy < 0) {
       this.platforms.forEach((platform) => (platform.y += -this.player.dy));
@@ -240,6 +240,7 @@ export default class Game {
         this.highScore = this.score;
         localStorage.setItem("highScore", this.highScore.toString());
       }
+      this.score = 0;
       this.gameState = GameState.GameOver;
     }
   }
