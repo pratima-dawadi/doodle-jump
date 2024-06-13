@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #76a6b8, #7a7de0);
+}
+
+canvas {
+  background: white;
+  border: 2px solid black;
+  height: 98vh;
+  background-image: url("../../public/bg.png");
+}
