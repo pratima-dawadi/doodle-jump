@@ -81,6 +81,11 @@ export default class Game {
   }
 
   eventListener() {
+    const myButton = document.getElementById("startButton");
+    myButton?.addEventListener("click", () => {
+      myButton.remove();
+      this.gameState = GameState.Playing;
+    });
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft") {
         this.playerDirection = -1;
@@ -92,7 +97,11 @@ export default class Game {
         this.keydown = true;
         this.player.dx = 3;
         this.player.image.src = "player-right.png";
-      } else if (e.key === "Enter" || e.key === "r") {
+      } else if (e.key === "r") {
+        try {
+          const myButton = document.getElementById("startButton")!;
+          myButton.remove();
+        } catch (error) {}
         if (
           this.gameState === GameState.Start ||
           this.gameState === GameState.GameOver
@@ -121,9 +130,9 @@ export default class Game {
   }
 
   startGame() {
-    this.ctx.fillStyle = "#D1D8C5";
+    this.ctx.fillStyle = "#8fc9e0";
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-    this.ctx.fillStyle = "#615EFC";
+    this.ctx.fillStyle = "blue";
     this.ctx.font = "30px Arial";
     this.ctx.textAlign = "center";
     this.ctx.fillText(
@@ -132,16 +141,16 @@ export default class Game {
       this.canvas.height / 2 - 50
     );
     this.ctx.fillText(
-      "Press Enter to Start",
+      "Click 'Start Game' to Start",
       this.canvas.width / 2,
       this.canvas.height / 2 + 50
     );
   }
 
   endGame() {
-    this.ctx.fillStyle = "#D1D8C5";
+    this.ctx.fillStyle = "#8fc9e0";
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-    this.ctx.fillStyle = "#615EFC";
+    this.ctx.fillStyle = "blue";
     this.ctx.font = "30px Arial";
     this.ctx.textAlign = "center";
     this.ctx.fillText(
@@ -150,7 +159,7 @@ export default class Game {
       this.canvas.height / 2 - 30
     );
     this.ctx.fillText(
-      "Press Enter or 'R' to Restart",
+      "Press 'R' to Restart",
       this.canvas.width / 2,
       this.canvas.height / 2 + 30
     );
